@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>三级联动</title>
+</head>
+<body>
+    <select name="province" id="province" onchange="addCity(this.value)">
+        <option value="-1">--请选择--</option>
+        <option value="0">湖南</option>
+        <option value="1">广东</option>
+        <option value="2">河南</option>
+    </select>
+    <select name="city" id="city" >
+        <option value="-1">--请选择--</option>
+    </select>
+
+
+    <script>
+        var citys = [
+            ["长沙", "郴州", "永州"],
+            ["广州", "惠州", "深圳"],
+            ["郑州", "开封", "洛阳"]
+        ];
+
+        function addCitysOpt(text,value) {
+            // c
+            var city = document.getElementById("city");
+
+            var opt = document.createElement("option");
+
+            opt.text = text;
+            opt.value = value;
+            city.options.add(opt)
+        }
+
+
+        function addCity(value) {
+            var province = document.getElementById("province");
+            var city = document.getElementById("city");
+            //每次联动，使下拉框长度为1
+            city.options.length = 1;
+
+            for(let i=0;i<citys[value].length;i++) {
+                addCitysOpt(citys[value][i],i)
+            }
+        }
+    </script>
+</body>
+</html>
